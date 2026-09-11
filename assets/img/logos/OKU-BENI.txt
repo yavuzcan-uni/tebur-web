@@ -1,0 +1,21 @@
+REFERANS LOGOLARI
+=================
+
+Bu klasöre aşağıdaki dosyaları koyduğunuzda referans logoları sitede
+otomatik olarak görünür. Dosya yoksa markanın adı yazıyla gösterilir,
+site bozulmaz.
+
+Beklenen dosya adları:
+  sok.png     (ŞOK Marketler)
+  a101.png    (A101)
+  metro.png   (METRO)
+  bim.png     (BİM)
+
+Öneriler:
+  - Şeffaf arka planlı PNG veya SVG kullanın (SVG kullanacaksanız
+    HTML'deki .png uzantılarını .svg yapın).
+  - Yükseklik en az 120 piksel olsun; site logoları 46 piksel
+    yüksekliğe ölçekler.
+  - Logolar sitede gri tonlamalı görünür, fare üzerine gelince
+    renklenir. Bu davranış assets/css/style.css içindeki .refs
+    bölümünden değiştirilebilir.
