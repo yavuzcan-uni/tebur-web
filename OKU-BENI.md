@@ -10,20 +10,18 @@ site/
   index.html            Ana sayfa (TR)
   hakkimizda.html
   ne-yapiyoruz.html
-  urunler.html
   referanslar.html
   iletisim.html
   en/
     index.html          Home (EN)
     about.html
     what-we-do.html
-    products.html
     references.html
     contact.html
   assets/
     css/style.css       Tüm tasarım burada
     js/main.js          Mobil menü, giriş animasyonu, form
-    img/                Logo ve favicon dosyaları
+    img/                Logo, favicon ve hero görseli
     img/logos/          Referans logoları (buraya siz koyacaksınız)
   sitemap.xml
   robots.txt
@@ -89,9 +87,13 @@ Yayına aldıktan sonra `sitemap.xml` adresini Search Console'a bildirin.
 - Yazı tipi: Archivo (Google Fonts). Helvetica ailesine yakın,
   nötr bir grotesk. Sistemde yoksa Helvetica Neue / Arial'a düşer.
 - Logodaki chevron biçimi; bölüm başlıklarındaki küçük işaret,
-  liste madde imleri ve hero panelindeki geometride tekrar ediyor.
+  liste madde imleri ve CTA bandındaki geometride tekrar ediyor.
 - Sayfalar ortak bir başlık ve alt bilgi kullanıyor. Menüye yeni bir
-  sayfa eklerseniz 12 HTML dosyasının hepsinde güncellemeniz gerekir.
+  sayfa eklerseniz 10 HTML dosyasının hepsinde güncellemeniz gerekir.
+- Ana sayfadaki liman görseli (`assets/img/hero-liman.jpg`) yapay zekâ
+  ile üretilmiş temsilî bir görseldir; firmaya ait bir tesis değildir.
+  Gerçek bir fotoğrafınız olduğunda aynı dosya adıyla değiştirmeniz
+  yeterli (1400x1050 piksel, JPEG).
 
 ## Erişilebilirlik ve performans
 

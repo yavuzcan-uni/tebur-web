@@ -361,66 +361,18 @@ a:hover { color: var(--deep-dark); }
 .hero__text { margin-top: 26px; max-width: 46ch; }
 .hero__actions { margin-top: 38px; }
 
-/* Logodaki chevron geometrisinden türetilmiş dekoratif panel */
-.hero__panel {
+/* Hero görseli */
+.hero__media {
   position: relative;
   aspect-ratio: 4 / 3.15;
   border-radius: var(--radius-lg);
-  background: linear-gradient(152deg, var(--deep) 0%, #0A78A8 46%, var(--blue) 100%);
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  padding: clamp(24px, 2.6vw, 38px);
+  background: var(--mist);
 }
-.hero__panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(135deg,
-      rgba(255,255,255,0.09) 0px, rgba(255,255,255,0.09) 2px,
-      rgba(255,255,255,0) 2px, rgba(255,255,255,0) 22px);
-}
-.hero__panel::after {
-  content: "";
-  position: absolute;
-  right: -14%;
-  top: -18%;
-  width: 72%;
-  aspect-ratio: 1;
-  background: rgba(255,255,255,0.10);
-  clip-path: polygon(0 0, 58% 0, 100% 100%, 42% 100%);
-}
-.hero__panel-content { position: relative; z-index: 1; width: 100%; }
-
-.panel-stats {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  background: rgba(255,255,255,0.22);
-  border: 1px solid rgba(255,255,255,0.22);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-.panel-stats > div {
-  background: rgba(3, 80, 116, 0.42);
-  backdrop-filter: blur(2px);
-  padding: 20px 20px 18px;
-}
-.panel-stats dt {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.72);
-}
-.panel-stats dd {
-  margin: 6px 0 0;
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: #fff;
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* --- İstatistik şeridi -------------------------------------------------- */
@@ -773,7 +725,7 @@ a.card:hover { transform: translateY(-3px); }
 
 @media (max-width: 1080px) {
   .hero__grid { grid-template-columns: 1fr; gap: 44px; }
-  .hero__panel { aspect-ratio: 16 / 8; }
+  .hero__media { aspect-ratio: 16 / 8; }
   .hero__title { max-width: 18ch; }
   .site-footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .site-footer__grid > :first-child { grid-column: 1 / -1; }
@@ -825,8 +777,7 @@ a.card:hover { transform: translateY(-3px); }
   .stat-band { grid-template-columns: 1fr; }
   .stat-band > div { border-left: 0; padding-left: 0; }
   .stat-band > div + div { border-top: 1px solid var(--line); }
-  .hero__panel { aspect-ratio: auto; }
-  .panel-stats { grid-template-columns: 1fr; }
+  .hero__media { aspect-ratio: 4 / 3; }
   .btn { width: 100%; justify-content: center; }
   .btn-row { flex-direction: column; align-items: stretch; }
 }
