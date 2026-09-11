@@ -1,21 +1,33 @@
 REFERANS LOGOLARI
 =================
 
-Bu klasöre aşağıdaki dosyaları koyduğunuzda referans logoları sitede
-otomatik olarak görünür. Dosya yoksa markanın adı yazıyla gösterilir,
-site bozulmaz.
+Bu klasördeki dosyalar sitedeki Referanslar bölümünde kullanılıyor:
 
-Beklenen dosya adları:
-  sok.png     (ŞOK Marketler)
-  a101.png    (A101)
-  metro.png   (METRO)
-  bim.png     (BİM)
+  sok.png     ŞOK Marketler
+  a101.png    A101
+  metro.png   METRO
+  bim.png     BİM
 
-Öneriler:
-  - Şeffaf arka planlı PNG veya SVG kullanın (SVG kullanacaksanız
-    HTML'deki .png uzantılarını .svg yapın).
-  - Yükseklik en az 120 piksel olsun; site logoları 46 piksel
-    yüksekliğe ölçekler.
-  - Logolar sitede gri tonlamalı görünür, fare üzerine gelince
-    renklenir. Bu davranış assets/css/style.css içindeki .refs
-    bölümünden değiştirilebilir.
+KAYNAK
+Dördü de Wikimedia Commons üzerindeki resmi marka dosyalarından
+alındı (SVG kaynaktan PNG'ye dönüştürüldü):
+
+  ŞOK    commons.wikimedia.org/wiki/File:ŞOK_Market_logo.svg
+  A101   commons.wikimedia.org/wiki/File:A101_logo.svg
+  METRO  commons.wikimedia.org/wiki/File:Metro_Wholesale_&_Food_Specialist_logo.svg
+  BİM    commons.wikimedia.org/wiki/File:Bim_(company)_logo.svg
+
+BİÇİM
+Hepsi 420x140 piksel şeffaf PNG. Logolar bu ortak tuvalin içine,
+optik olarak dengeli görünecek şekilde farklı oranlarda yerleştirildi
+(METRO geniş olduğu için küçük, ŞOK yoğun bir amblem olduğu için
+büyük). Site bu tuvali 56 piksel yüksekliğe ölçekliyor.
+
+DEĞİŞTİRMEK İSTERSENİZ
+Marka sahibinden aldığınız resmi dosyayı aynı adla, aynı 420x140
+tuval ölçüsünde kaydetmeniz yeterli. Farklı ölçüde kaydederseniz
+satırdaki hizalama bozulur.
+
+NOT
+Bu logolar üçüncü tarafların tescilli markalarıdır. Sitede yalnızca
+gerçekleşmiş ticari ilişkiyi belirtmek için kullanılıyor.

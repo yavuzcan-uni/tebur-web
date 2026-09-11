@@ -505,14 +505,12 @@ a.card:hover { transform: translateY(-3px); }
 }
 .refs li:hover { background: var(--mist); }
 .refs img {
-  max-height: 46px;
+  height: 56px;
   width: auto;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.72;
-  transition: filter 0.28s var(--ease), opacity 0.28s var(--ease);
+  transition: transform 0.3s var(--ease);
 }
-.refs li:hover img { filter: grayscale(0); opacity: 1; }
+.refs li:hover img { transform: scale(1.04); }
 /* Logo dosyası yoksa markanın adı tipografik olarak görünür */
 .refs__name {
   font-size: 1.25rem;
