@@ -55,40 +55,63 @@
 })();
 
 /* --- Teklif formu -------------------------------------------------------
-   Form servisi (Formspree vb.) henüz tanımlanmadıysa, form gönderimi
-   kullanıcının e-posta uygulamasında hazır bir mesaja dönüştürülür.
-   action değerini gerçek uç nokta ile değiştirdiğinizde bu devre dışı kalır. */
+   Form gonder.php'ye AJAX ile gönderilir; sayfa yenilenmez.
+   JavaScript kapalıysa form normal POST yapar ve teşekkür sayfasına gider. */
 (function () {
   'use strict';
+
   var form = document.getElementById('teklif-formu');
-  if (!form) return;
+  if (!form || !window.fetch) return;
+
+  var durum = document.getElementById('form-durum');
+  var buton = form.querySelector('button[type="submit"]');
+  var isEn = document.documentElement.lang === 'en';
+
+  var METIN = isEn
+    ? { gonderiliyor: 'Sending…', gonder: 'Send',
+        aglHata: 'The message could not be sent. Please write to info@tebur.com.tr.' }
+    : { gonderiliyor: 'Gönderiliyor…', gonder: 'Gönder',
+        aglHata: 'Mesaj gönderilemedi. Lütfen info@tebur.com.tr adresine yazın.' };
+
+  function goster(mesaj, ok) {
+    if (!durum) return;
+    durum.textContent = mesaj;
+    durum.className = 'form-status ' + (ok ? 'form-status--ok' : 'form-status--hata');
+    durum.hidden = false;
+  }
+
+  function butonDurumu(bekliyor) {
+    if (!buton) return;
+    buton.disabled = bekliyor;
+    buton.firstChild.nodeValue = bekliyor ? METIN.gonderiliyor : METIN.gonder;
+  }
 
   form.addEventListener('submit', function (e) {
-    if (form.action.indexOf('FORM_ID') === -1) return; // gerçek servis tanımlı
-
     e.preventDefault();
+    if (buton && buton.disabled) return;
 
-    var to = form.getAttribute('data-mailto');
-    var d = new FormData(form);
-    var isEn = document.documentElement.lang === 'en';
+    if (durum) durum.hidden = true;
+    butonDurumu(true);
 
-    var labels = isEn
-      ? { subject: 'Enquiry', name: 'Name', company: 'Company', email: 'E-mail', country: 'Country', msg: 'Request' }
-      : { subject: 'Teklif talebi', name: 'Ad Soyad', company: 'Firma', email: 'E-posta', country: 'Ülke', msg: 'Talep' };
-
-    var lines = [
-      labels.name + ': ' + (d.get('ad') || ''),
-      labels.company + ': ' + (d.get('firma') || ''),
-      labels.email + ': ' + (d.get('eposta') || ''),
-      labels.country + ': ' + (d.get('ulke') || ''),
-      '',
-      labels.msg + ':',
-      d.get('mesaj') || ''
-    ];
-
-    var subject = labels.subject + ' — ' + (d.get('firma') || d.get('ad') || '');
-    window.location.href = 'mailto:' + to +
-      '?subject=' + encodeURIComponent(subject) +
-      '&body=' + encodeURIComponent(lines.join('\n'));
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+      .then(function (r) { return r.json().catch(function () { return null; }); })
+      .then(function (d) {
+        if (d && d.ok) {
+          goster(d.mesaj, true);
+          form.reset();
+        } else {
+          goster((d && d.mesaj) || METIN.aglHata, false);
+        }
+      })
+      .catch(function () {
+        goster(METIN.aglHata, false);
+      })
+      .then(function () {
+        butonDurumu(false);
+      });
   });
 })();

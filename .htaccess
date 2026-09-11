@@ -1,0 +1,59 @@
+# TEBUR — Apache / LiteSpeed ayarları (Natro Linux hosting)
+# Windows / IIS paketinde bu dosya çalışmaz; onun yerine web.config kullanılır.
+
+# --- Varsayılan karakter kümesi ------------------------------------------
+AddDefaultCharset UTF-8
+
+# --- Dizin listelemesini kapat -------------------------------------------
+Options -Indexes
+
+# --- Hassas dosyalara erişimi engelle ------------------------------------
+<FilesMatch "^(config\.php|config\.ornek\.php|OKU-BENI\.md|\.gitignore)$">
+    Require all denied
+</FilesMatch>
+
+# PHPMailer kaynak dosyaları doğrudan açılmasın
+RedirectMatch 404 ^/lib/
+
+# --- Yönlendirmeler -------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # HTTPS'e zorla
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+    # www'lu adrese zorla (sitedeki canonical etiketleri www kullanıyor)
+    RewriteCond %{HTTP_HOST} ^tebur\.com\.tr$ [NC]
+    RewriteRule ^(.*)$ https://www.tebur.com.tr/$1 [R=301,L]
+</IfModule>
+
+# --- Hata sayfaları -------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# --- Sıkıştırma -----------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+    AddOutputFilterByType DEFLATE application/javascript application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# --- Tarayıcı önbelleği ---------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html                 "access plus 0 seconds"
+    ExpiresByType text/css                  "access plus 7 days"
+    ExpiresByType application/javascript    "access plus 7 days"
+    ExpiresByType image/png                 "access plus 30 days"
+    ExpiresByType image/jpeg                "access plus 30 days"
+    ExpiresByType image/svg+xml             "access plus 30 days"
+    ExpiresByType image/x-icon              "access plus 30 days"
+</IfModule>
+
+# --- Güvenlik başlıkları --------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

@@ -105,13 +105,16 @@
           <p class="eyebrow">Form</p>
           <h2 class="h2">Teklif isteyin</h2>
 
-          <!-- Formu canlıya almak için: action değerini kendi form servisinizin
-               (örn. Formspree) adresiyle değiştirin. Değiştirilmediği sürece
-               form, bilgileri e-posta uygulamanızda hazır hale getirir. -->
-          <form class="form-grid mt-l" id="teklif-formu"
-                action="https://formspree.io/f/FORM_ID"
-                method="POST"
-                data-mailto="info@tebur.com.tr">
+          <!-- Form gonder.php dosyasina gonderilir. Calismasi icin sunucuda
+               config.php bulunmali (bkz. config.ornek.php). -->
+          <form class="form-grid mt-l" id="teklif-formu" action="gonder.php" method="POST">
+            <input type="hidden" name="dil" value="tr">
+
+            <!-- Bal küpü: botlar bu alanı doldurur, ziyaretçiler görmez -->
+            <p class="hp" aria-hidden="true">
+              <label for="website">Bu alanı boş bırakın</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </p>
 
             <div class="field">
               <label for="ad">Ad Soyad</label>
@@ -143,6 +146,8 @@
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
             </div>
+
+            <p class="form-status" id="form-durum" role="status" aria-live="polite" hidden></p>
 
             <p class="field-note">Formu göndererek bilgilerinizin talebinize dönüş yapılması amacıyla işlenmesini kabul etmiş olursunuz. Dilediğiniz zaman doğrudan <a href="mailto:info@tebur.com.tr">info@tebur.com.tr</a> adresine de yazabilirsiniz.</p>
           </form>

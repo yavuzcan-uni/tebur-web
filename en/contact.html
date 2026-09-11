@@ -105,13 +105,16 @@
           <p class="eyebrow">Form</p>
           <h2 class="h2">Request a quote</h2>
 
-          <!-- To make the form live, replace the action value with your own form
-               service endpoint (e.g. Formspree). Until then, submitting the form
-               opens a prepared message in the visitor's e-mail application. -->
-          <form class="form-grid mt-l" id="teklif-formu"
-                action="https://formspree.io/f/FORM_ID"
-                method="POST"
-                data-mailto="info@tebur.com.tr">
+          <!-- The form posts to gonder.php in the site root. It needs
+               config.php on the server (see config.ornek.php). -->
+          <form class="form-grid mt-l" id="teklif-formu" action="../gonder.php" method="POST">
+            <input type="hidden" name="dil" value="en">
+
+            <!-- Honeypot: bots fill this in, visitors never see it -->
+            <p class="hp" aria-hidden="true">
+              <label for="website">Leave this field empty</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </p>
 
             <div class="field">
               <label for="ad">Full name</label>
@@ -143,6 +146,8 @@
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
             </div>
+
+            <p class="form-status" id="form-durum" role="status" aria-live="polite" hidden></p>
 
             <p class="field-note">By sending this form you agree that your details may be processed in order to respond to your enquiry. You can also write directly to <a href="mailto:info@tebur.com.tr">info@tebur.com.tr</a>.</p>
           </form>
