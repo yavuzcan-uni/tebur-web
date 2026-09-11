@@ -1,7 +1,7 @@
 <?php
 /**
  * TEBUR — teklif formu işleyicisi
- * PHP 7.0+ ile çalışır. Veritabanı gerektirmez.
+ * PHP 5.5 - 8.x ile çalışır. Veritabanı gerektirmez.
  */
 
 require __DIR__ . '/lib/PHPMailer/Exception.php';
@@ -24,13 +24,13 @@ function kes($metin, $sinir)
 
 function istek_ajax()
 {
-    $x = $_SERVER['HTTP_X_REQUESTED_WITH'] ?? '';
+    $x = isset($_SERVER['HTTP_X_REQUESTED_WITH']) ? $_SERVER['HTTP_X_REQUESTED_WITH'] : '';
     return strtolower($x) === 'xmlhttprequest';
 }
 
 function alan($ad, $sinir = 500)
 {
-    $v = $_POST[$ad] ?? '';
+    $v = isset($_POST[$ad]) ? $_POST[$ad] : '';
     if (!is_string($v)) {
         return '';
     }
@@ -61,7 +61,7 @@ function bitir($ok, $mesaj, $dil)
 
 /* --- Giriş kontrolleri -------------------------------------------------- */
 
-$dil = (($_POST['dil'] ?? 'tr') === 'en') ? 'en' : 'tr';
+$dil = (isset($_POST['dil']) && $_POST['dil'] === 'en') ? 'en' : 'tr';
 
 $M = $dil === 'en'
     ? [
@@ -81,7 +81,7 @@ $M = $dil === 'en'
         'tamam'   => 'Teşekkürler, talebiniz bize ulaştı. En kısa sürede dönüş yapacağız.',
       ];
 
-if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+if (!isset($_SERVER['REQUEST_METHOD']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
     bitir(false, $M['yontem'], $dil);
 }
 
@@ -95,7 +95,7 @@ $ad     = alan('ad', 120);
 $firma  = alan('firma', 160);
 $eposta = alan('eposta', 160);
 $ulke   = alan('ulke', 80);
-$mesaj  = trim((string) ($_POST['mesaj'] ?? ''));
+$mesaj  = isset($_POST['mesaj']) ? trim((string) $_POST['mesaj']) : '';
 $mesaj  = kes($mesaj, 5000);
 
 if ($ad === '' || $firma === '' || $eposta === '' || $mesaj === '') {
@@ -130,7 +130,7 @@ $satirlar = [
     '',
     str_repeat('-', 48),
     'Gönderim : ' . date('d.m.Y H:i'),
-    'IP       : ' . ($_SERVER['REMOTE_ADDR'] ?? '-'),
+    'IP       : ' . (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '-'),
 ];
 $govde = implode("\n", $satirlar);
 
@@ -150,13 +150,13 @@ try {
         ? PHPMailer::ENCRYPTION_STARTTLS
         : PHPMailer::ENCRYPTION_SMTPS;
     $mail->Timeout    = 20;
-    $mail->SMTPDebug  = (int) ($cfg['hata_ayikla'] ?? 0);
+    $mail->SMTPDebug  = isset($cfg['hata_ayikla']) ? (int) $cfg['hata_ayikla'] : 0;
     if ($mail->SMTPDebug > 0) {
         $mail->Debugoutput = 'error_log';
     }
 
-    $mail->setFrom($cfg['gonderen'], $cfg['gonderen_adi'] ?? 'tebur.com.tr');
-    $mail->addAddress($cfg['alici'], $cfg['alici_adi'] ?? '');
+    $mail->setFrom($cfg['gonderen'], isset($cfg['gonderen_adi']) ? $cfg['gonderen_adi'] : 'tebur.com.tr');
+    $mail->addAddress($cfg['alici'], isset($cfg['alici_adi']) ? $cfg['alici_adi'] : '');
     $mail->addReplyTo($eposta, $ad !== '' ? $ad : $eposta);
 
     $mail->Subject = 'Teklif talebi — ' . ($firma !== '' ? $firma : $ad);
