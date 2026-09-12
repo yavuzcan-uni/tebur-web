@@ -19,6 +19,14 @@ RedirectMatch 404 ^/lib/
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # SSL doğrulama dosyalarını yönlendirmelerden muaf tut.
+    # Sertifika sağlayıcısı alan adı sahipliğini
+    # /.well-known/pki-validation/ (Sectigo) veya
+    # /.well-known/acme-challenge/ (Let's Encrypt) altına koyduğu
+    # dosyayı HTTP üzerinden okuyarak doğrular. Bu satır olmazsa
+    # istek HTTPS'e yönlenir ve doğrulama başarısız olur.
+    RewriteRule ^\.well-known/ - [L]
+
     # HTTPS'e zorla
     RewriteCond %{HTTPS} !=on
     RewriteCond %{HTTP:X-Forwarded-Proto} !https
