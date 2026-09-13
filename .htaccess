@@ -35,6 +35,13 @@ RedirectMatch 404 ^/lib/
     # www'lu adrese zorla (sitedeki canonical etiketleri www kullanıyor)
     RewriteCond %{HTTP_HOST} ^tebur\.com\.tr$ [NC]
     RewriteRule ^(.*)$ https://www.tebur.com.tr/$1 [R=301,L]
+
+    # /index.html adresini köke yönlendir, adres çubuğu temiz kalsın.
+    # THE_REQUEST kullanılıyor: yalnızca ziyaretçinin yazdığı adres
+    # index.html içeriyorsa çalışır. Sunucunun kendi içinde yaptığı
+    # "/" -> "/index.html" eşlemesi bu kurala takılmaz, döngü olmaz.
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+    RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
 </IfModule>
 
 # --- Hata sayfaları -------------------------------------------------------
