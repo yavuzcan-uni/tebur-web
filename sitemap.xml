@@ -12,37 +12,37 @@
   </url>
 
   <url>
-    <loc>https://www.tebur.com.tr/hakkimizda.html</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://www.tebur.com.tr/hakkimizda.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.tebur.com.tr/en/about.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tebur.com.tr/hakkimizda.html"/>
+    <loc>https://www.tebur.com.tr/hakkimizda</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.tebur.com.tr/hakkimizda"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tebur.com.tr/en/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tebur.com.tr/hakkimizda"/>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.tebur.com.tr/ne-yapiyoruz.html</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://www.tebur.com.tr/ne-yapiyoruz.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.tebur.com.tr/en/what-we-do.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tebur.com.tr/ne-yapiyoruz.html"/>
+    <loc>https://www.tebur.com.tr/ne-yapiyoruz</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.tebur.com.tr/ne-yapiyoruz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tebur.com.tr/en/what-we-do"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tebur.com.tr/ne-yapiyoruz"/>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.tebur.com.tr/referanslar.html</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://www.tebur.com.tr/referanslar.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.tebur.com.tr/en/references.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tebur.com.tr/referanslar.html"/>
+    <loc>https://www.tebur.com.tr/referanslar</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.tebur.com.tr/referanslar"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tebur.com.tr/en/references"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tebur.com.tr/referanslar"/>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.tebur.com.tr/iletisim.html</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://www.tebur.com.tr/iletisim.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.tebur.com.tr/en/contact.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tebur.com.tr/iletisim.html"/>
+    <loc>https://www.tebur.com.tr/iletisim</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.tebur.com.tr/iletisim"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tebur.com.tr/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tebur.com.tr/iletisim"/>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -57,25 +57,25 @@
   </url>
 
   <url>
-    <loc>https://www.tebur.com.tr/en/about.html</loc>
+    <loc>https://www.tebur.com.tr/en/about</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.tebur.com.tr/en/what-we-do.html</loc>
+    <loc>https://www.tebur.com.tr/en/what-we-do</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.tebur.com.tr/en/references.html</loc>
+    <loc>https://www.tebur.com.tr/en/references</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.tebur.com.tr/en/contact.html</loc>
+    <loc>https://www.tebur.com.tr/en/contact</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>

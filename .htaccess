@@ -5,7 +5,10 @@
 AddDefaultCharset UTF-8
 
 # --- Dizin listelemesini kapat -------------------------------------------
-Options -Indexes
+# MultiViews da kapalı: açık olsa Apache "/hakkimizda" isteğini kendi
+# içinde hakkimizda.html'e eşler ve aşağıdaki kanonik yönlendirmeler
+# devreye girmez.
+Options -Indexes -MultiViews
 
 # --- Hassas dosyalara erişimi engelle ------------------------------------
 <FilesMatch "^(config\.php|config\.ornek\.php|OKU-BENI\.md|\.gitignore)$">
@@ -36,12 +39,29 @@ RedirectMatch 404 ^/lib/
     RewriteCond %{HTTP_HOST} ^tebur\.com\.tr$ [NC]
     RewriteRule ^(.*)$ https://www.tebur.com.tr/$1 [R=301,L]
 
-    # /index.html adresini köke yönlendir, adres çubuğu temiz kalsın.
-    # THE_REQUEST kullanılıyor: yalnızca ziyaretçinin yazdığı adres
-    # index.html içeriyorsa çalışır. Sunucunun kendi içinde yaptığı
-    # "/" -> "/index.html" eşlemesi bu kurala takılmaz, döngü olmaz.
+    # --- Temiz adresler ---------------------------------------------------
+    # Aşağıdaki üç kural şu sonucu verir:
+    #   /index.html        -> /              (301)
+    #   /hakkimizda.html   -> /hakkimizda    (301)
+    #   /hakkimizda        -> hakkimizda.html dosyasını sunar (adres değişmez)
+    #
+    # İlk iki kural THE_REQUEST'e bakıyor; bu değişken ziyaretçinin
+    # gönderdiği özgün istek satırını tutar ve sunucunun kendi içinde
+    # yaptığı eşlemelerden etkilenmez. Üçüncü kural adresi dosyaya
+    # eşlerken bu sayede tekrar yönlendirmeye takılmaz, döngü oluşmaz.
+
+    # 1) index.html -> dizin kökü
     RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
     RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
+    # 2) Diğer .html adreslerini uzantısız hâle getir
+    RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
+    RewriteRule ^ /%1 [R=301,L]
+
+    # 3) Uzantısız adresi ilgili .html dosyasına eşle
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.+)$ $1.html [L]
 </IfModule>
 
 # --- Hata sayfaları -------------------------------------------------------

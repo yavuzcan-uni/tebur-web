@@ -51,9 +51,9 @@ function bitir($ok, $mesaj, $dil)
 
     // JavaScript kapalıysa: teşekkür sayfasına ya da forma geri dön
     if ($ok) {
-        $hedef = $dil === 'en' ? 'en/thank-you.html' : 'tesekkurler.html';
+        $hedef = $dil === 'en' ? 'en/thank-you' : 'tesekkurler';
     } else {
-        $hedef = ($dil === 'en' ? 'en/contact.html' : 'iletisim.html') . '?hata=1#form';
+        $hedef = ($dil === 'en' ? 'en/contact' : 'iletisim') . '?hata=1#form';
     }
     header('Location: ' . $hedef, true, 303);
     exit;
