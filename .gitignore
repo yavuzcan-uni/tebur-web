@@ -1,2 +1,4 @@
 # SMTP sifresini iceren dosya asla depoya girmemeli
 config.php
+# Gecici tani dosyasi - gizli anahtar iceriyor, depo herkese acik
+tani.php
