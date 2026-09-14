@@ -124,6 +124,22 @@ if (!is_array($cfg) || empty($cfg['smtp_sifre']) || $cfg['smtp_sifre'] === 'BURA
     bitir(false, $M['ayar'], $dil);
 }
 
+// Kopyala-yapistirda araya kacan bosluk / satir sonu kimlik dogrulamayi
+// bozar. Bastaki ve sondaki bosluklari temizle.
+$cfg['smtp_kullanici'] = trim($cfg['smtp_kullanici']);
+$cfg['smtp_sifre']     = trim($cfg['smtp_sifre']);
+
+// Posta sunuculari SMTP AUTH'ta yalnizca duz ASCII kabul ediyor.
+// Turkce harf ya da gorunmez karakter varsa sunucu "535 Login incorrect
+// ... outside the range 32-126" dondurur. Bunu onceden yakalayip
+// gunluge anlasilir bir not birakalim.
+if (preg_match('/[^ -~]/', $cfg['smtp_sifre'])) {
+    error_log('TEBUR form hatasi: SMTP sifresi ASCII disi karakter iceriyor. '
+        . 'Posta kutusunun sifresini yalnizca duz harf, rakam ve basit '
+        . 'isaretlerden olusacak sekilde degistirin.');
+    bitir(false, $M['hata'], $dil);
+}
+
 /* --- Gönderim ----------------------------------------------------------- */
 
 $satirlar = [
