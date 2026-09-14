@@ -59,8 +59,20 @@ göster" seçeneğini açın.
 
 ### 2. Formu çalışır hale getirin
 
-`config.ornek.php` dosyasının bir kopyasını alın, adını **`config.php`** yapın
-ve içindeki `smtp_sifre` satırına `info@tebur.com.tr` hesabının şifresini yazın.
+`config.ornek.php` dosyasının bir **kopyasını** alın, adını **`config.php`**
+yapın ve içindeki `smtp_sifre` satırına `info@tebur.com.tr` hesabının şifresini
+yazın. Site yalnızca `config.php` adlı dosyayı okur; şifreyi örnek dosyanın
+içinde bırakmayın.
+
+`config.php` iki yerde durabilir:
+
+- **Tercih edilen:** `public_html`'in bir üst dizini, yani
+  `/home/kullanici/config.php`. Web sunucusu bu klasöre hiçbir koşulda
+  erişemez, dosya kazara dışarı açılamaz.
+- **Alternatif:** `public_html` içinde. Burada da çalışır; `.htaccess`
+  dosyayı dışarıya kapatır (istek 403 döner).
+
+Site önce üst dizine, bulamazsa site köküne bakar.
 
 Neden şifre gerekiyor: alan adınızın SPF kaydı yalnızca Yandex sunucularına
 sizin adınıza mail gönderme izni veriyor. Natro'nun sunucusundan doğrudan

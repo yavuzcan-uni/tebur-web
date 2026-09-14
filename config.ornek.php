@@ -3,10 +3,18 @@
  * TEBUR — form ayarları
  *
  * KURULUM
- * 1. Bu dosyanın adını "config.php" olarak değiştirin (kopyalayın).
- * 2. Aşağıdaki "smtp_sifre" satırına e-posta hesabının şifresini yazın.
- * 3. config.php dosyasını sunucuya yükleyin. Bu dosya (config.ornek.php)
- *    sunucuda durabilir, içinde şifre yok.
+ * 1. Bu dosyanın bir KOPYASINI alın ve adını "config.php" yapın.
+ *    Şifreyi bu dosyaya değil, kopyaya yazın. Site yalnızca
+ *    "config.php" adlı dosyayı okur.
+ * 2. config.php'yi tercihen public_html'in BİR ÜST dizinine koyun
+ *    (cPanel'de /home/kullanici/config.php). Orada web sunucusu
+ *    dosyaya hiçbir koşulda ulaşamaz.
+ *    Üst dizine koyamıyorsanız public_html içinde de çalışır;
+ *    oradaki kopyayı .htaccess dışarıya kapatır.
+ * 3. "smtp_sifre" satırına e-posta hesabının şifresini yazın.
+ *
+ * ÖNEMLİ: Şifreyi bu örnek dosyanın içinde bırakmayın. Adı "örnek"
+ * olduğu için ileride birine gönderilmesi ya da paylaşılması kolaydır.
  *
  * NEDEN SMTP?
  * Alan adınızın SPF kaydı yalnızca Yandex sunucularına gönderim izni

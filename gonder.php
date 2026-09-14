@@ -107,11 +107,19 @@ if (!filter_var($eposta, FILTER_VALIDATE_EMAIL)) {
 
 /* --- Ayarlar ------------------------------------------------------------ */
 
-$cfg_yolu = __DIR__ . '/config.php';
-if (!is_file($cfg_yolu)) {
+// config.php once public_html'in bir ust dizininde aranir. Orada durursa
+// web sunucusu o dosyaya hicbir kosulda ulasamaz, en guvenli yer orasi.
+// Bulunamazsa site kokune bakilir; oradaki kopya .htaccess ile korunur.
+$cfg = null;
+foreach (array(dirname(__DIR__) . '/config.php', __DIR__ . '/config.php') as $cfg_yolu) {
+    if (is_file($cfg_yolu)) {
+        $cfg = require $cfg_yolu;
+        break;
+    }
+}
+if ($cfg === null) {
     bitir(false, $M['ayar'], $dil);
 }
-$cfg = require $cfg_yolu;
 if (!is_array($cfg) || empty($cfg['smtp_sifre']) || $cfg['smtp_sifre'] === 'BURAYA_SIFRE_YAZIN') {
     bitir(false, $M['ayar'], $dil);
 }
